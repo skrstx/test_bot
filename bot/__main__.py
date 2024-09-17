@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 async def main() -> None:
     config: Config = load_config()
 
-    redis = Redis(host="localhost")
+    redis = Redis(host=config.redis.host, port=config.redis.port)
     storage = RedisStorage(redis=redis)
 
     bot = Bot(token=config.tg_bot.token,

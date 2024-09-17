@@ -2,18 +2,17 @@ version: '3.8'
 
 services:
   redis:
-    image: redis:latest
-    container_name: redis
+    image: "redis:latest"
+    restart: "unless-stopped"
     ports:
       - "6379:6379"
   
   bot:
-    image: telegram_bot:latest
-    container_name: telegram_bot
+    image: "telegram_bot:latest"
+    restart: "unless-stopped"
     environment:
       - "BOT_TOKEN=${BOT_TOKEN}"
-      - "REDIS_URL=${REDIS_URL}"
+      - "REDIS_HOST=${REDIS_HOST}"
+      - "REDIS_PORT=${REDIS_PORT}"
     depends_on:
       - redis
-    ports:
-      - "8000:8000"

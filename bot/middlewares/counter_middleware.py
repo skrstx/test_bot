@@ -23,8 +23,8 @@ class CounterMiddleware(BaseMiddleware):
             await state.update_data({"counter": 1})
         else:
             await state.update_data({"counter": state_data["counter"] + 1})
-        state = await state.get_data()
-        
+        state_data = await state.get_data()
+
         await event.answer(f"Отправлено сообщений: {state_data['counter']}")
 
         return result
